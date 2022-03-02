@@ -17,10 +17,27 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-
+          
+  print-hello:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+        command: 'echo Ammar'
+        
+  print-ammar:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+        command: 'echo DEvops'        
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - print-hello
+      - print-ammar

@@ -34,7 +34,18 @@ jobs:
       - checkout
       - run:
           name: 'Yasser'
-          command: 'echo DEvops'        
+          command: 'echo DEvops'  
+
+  this-fails:
+    docker:
+      - image: circleci/node:13.8.0 
+
+    steps:
+      - run: cat a-file-that-doest-exist.txt
+      - runs-on-fail:
+          run: echo triggered successfully
+          when: on_fail
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:

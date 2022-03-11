@@ -42,8 +42,9 @@ jobs:
 
     steps:
       - run: cat a-file-that-doest-exist.txt
-      - runs-on-fail:
-          run: echo triggered successfully
+      
+      - run: 
+          command: echo triggered successfully
           when: on_fail
 
 # Invoke jobs via workflows
@@ -52,5 +53,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - print-hello
-      - print-ammar
+      - this-fails
